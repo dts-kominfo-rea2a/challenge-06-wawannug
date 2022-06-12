@@ -1,5 +1,4 @@
 // TODO: import module bila dibutuhkan di sini
-const { deepStrictEqual } = require('assert');
 const fs = require('fs');
 // ! JANGAN DIMODIFIKASI
 let file1 = "./data1.json";
@@ -20,7 +19,7 @@ let modifyFile3 = (val) => {
 // TODO: Kerjakan bacaData
 // gunakan variabel file1, file2, dan file3
 const bacaData = (fnCallBack) => {
-  let resultArray = [];
+  let result = [];
 
   fs.readFile(
     file1, { encoding: "utf8" }, (err, data) => {
@@ -28,7 +27,7 @@ const bacaData = (fnCallBack) => {
         return fnCallback(err, null);
       }
       const resultData = JSON.parse(data);
-      resultArray.push(resultData.message.split(" ")[1]);
+      result.push(resultData.message.split(" ")[1]);
     }
   )
 
@@ -38,7 +37,7 @@ const bacaData = (fnCallBack) => {
         return fnCallback(err, null);
       }
       const resultData = JSON.parse(data);
-      resultArray.push(resultData[0].message.split(" ")[1]);
+      result.push(resultData[0].message.split(" ")[1]);
     }
   )
 
@@ -49,8 +48,8 @@ const bacaData = (fnCallBack) => {
       }
 
       const resultData = JSON.parse(data);
-      resultArray.push(resultData[0].data.message.split(" ")[1]);
-      fnCallback(null, resultArray);
+      result.push(resultData[0].data.message.split(" ")[1]);
+      fnCallBack(null, result);
     }
   )
 };
